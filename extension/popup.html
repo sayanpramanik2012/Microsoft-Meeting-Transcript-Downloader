@@ -8,12 +8,19 @@
   </head>
   <body>
     <main>
-      <header>
-        <div class="mark" aria-hidden="true">T</div>
-        <div>
-          <h1>Transcript Capture</h1>
-          <p class="subtitle">for Microsoft Teams</p>
+      <header class="app-header">
+        <div class="brand-lockup">
+          <div class="mark" aria-hidden="true">
+            <span class="mark-page"></span>
+            <span class="mark-lines"></span>
+            <span class="mark-arrow">↓</span>
+          </div>
+          <div>
+            <h1>Transcript Capture</h1>
+            <p class="subtitle">for Microsoft Teams</p>
+          </div>
         </div>
+        <span class="privacy-pill"><span></span>Local only</span>
       </header>
 
       <section class="status-card" aria-live="polite">
@@ -24,16 +31,17 @@
         </div>
       </section>
 
-      <div class="controls">
-        <button id="start" class="button secondary" type="button">Start recorder</button>
-        <button id="auto" class="button primary" type="button" disabled>Auto-capture all</button>
+      <div class="controls" aria-label="Transcript controls">
+        <button id="start" class="button primary start-action" type="button">Start recorder</button>
+        <button id="auto" class="button accent-action" type="button" disabled>Auto-capture all</button>
         <button id="download" class="button secondary" type="button" disabled>Download transcript</button>
         <button id="stop" class="button danger" type="button" disabled>Stop recorder</button>
       </div>
 
-      <p class="hint">
-        Keep the transcript pane open while auto-capture scrolls through it. Everything stays in this browser tab.
-      </p>
+      <footer class="privacy-note">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 19 6v5.1c0 4.4-2.8 8.4-7 10.1-4.2-1.7-7-5.7-7-10.1V6l7-3.2Zm0 3L8 7.6v3.5c0 3 1.6 5.8 4 7.2 2.4-1.4 4-4.2 4-7.2V7.6l-4-1.8Z"/></svg>
+        <p>Keep the transcript pane open during capture. Transcript data stays in this tab.</p>
+      </footer>
     </main>
     <script src="popup.js"></script>
   </body>
