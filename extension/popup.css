@@ -1,0 +1,161 @@
+:root {
+  color-scheme: light;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #242424;
+  background: #f7f7fb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 350px;
+  margin: 0;
+}
+
+main {
+  padding: 18px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 16px;
+}
+
+.mark {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border-radius: 10px;
+  color: #fff;
+  background: #5b5fc7;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.subtitle {
+  margin-top: 2px;
+  color: #616161;
+  font-size: 12px;
+}
+
+.status-card {
+  display: flex;
+  min-height: 76px;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 13px;
+  border: 1px solid #dedede;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.status-dot {
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  margin-top: 5px;
+  border-radius: 50%;
+  background: #8a8886;
+}
+
+.status-dot.running {
+  background: #5b5fc7;
+  box-shadow: 0 0 0 4px #e9e9ff;
+}
+
+.status-dot.complete {
+  background: #107c10;
+  box-shadow: 0 0 0 4px #e2f4e2;
+}
+
+.status-dot.error {
+  background: #c50f1f;
+  box-shadow: 0 0 0 4px #fde7e9;
+}
+
+#status-title {
+  display: block;
+  font-size: 13px;
+}
+
+#status-detail {
+  margin-top: 4px;
+  color: #616161;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.button {
+  min-height: 36px;
+  padding: 7px 9px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  font: 600 12px/1.2 "Segoe UI", Arial, sans-serif;
+  cursor: pointer;
+}
+
+.button:disabled {
+  color: #a19f9d;
+  background: #edebe9;
+  border-color: #edebe9;
+  cursor: not-allowed;
+}
+
+.primary {
+  color: #fff;
+  background: #5b5fc7;
+}
+
+.primary:hover:not(:disabled) {
+  background: #4f52b2;
+}
+
+.secondary {
+  color: #242424;
+  border-color: #c8c6c4;
+  background: #fff;
+}
+
+.secondary:hover:not(:disabled) {
+  background: #f3f2f1;
+}
+
+.danger {
+  color: #a4262c;
+  border-color: #e3b6b8;
+  background: #fff;
+}
+
+.danger:hover:not(:disabled) {
+  background: #fde7e9;
+}
+
+.hint {
+  margin-top: 12px;
+  color: #6b6a69;
+  font-size: 11px;
+  line-height: 1.4;
+}
+

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Transcript Capture for Teams</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="mark" aria-hidden="true">T</div>
+        <div>
+          <h1>Transcript Capture</h1>
+          <p class="subtitle">for Microsoft Teams</p>
+        </div>
+      </header>
+
+      <section class="status-card" aria-live="polite">
+        <span id="status-dot" class="status-dot idle"></span>
+        <div>
+          <strong id="status-title">Not started</strong>
+          <p id="status-detail">Open a Teams transcript, then select Start.</p>
+        </div>
+      </section>
+
+      <div class="controls">
+        <button id="start" class="button secondary" type="button">Start recorder</button>
+        <button id="auto" class="button primary" type="button" disabled>Auto-capture all</button>
+        <button id="download" class="button secondary" type="button" disabled>Download transcript</button>
+        <button id="stop" class="button danger" type="button" disabled>Stop recorder</button>
+      </div>
+
+      <p class="hint">
+        Keep the transcript pane open while auto-capture scrolls through it. Everything stays in this browser tab.
+      </p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
+

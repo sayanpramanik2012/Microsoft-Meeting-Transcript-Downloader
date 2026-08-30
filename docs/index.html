@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Transcript Capture for Teams privacy and product information.">
+    <title>Transcript Capture for Teams</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: #242424;
+        background: #f5f5fa;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; }
+      main {
+        width: min(760px, calc(100% - 32px));
+        margin: 48px auto;
+        padding: 40px;
+        border: 1px solid #dedee8;
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: 0 12px 40px rgba(36, 36, 70, 0.08);
+      }
+      .mark {
+        display: grid;
+        width: 52px;
+        height: 52px;
+        place-items: center;
+        border-radius: 13px;
+        color: #fff;
+        background: #5b5fc7;
+        font-size: 28px;
+        font-weight: 700;
+      }
+      h1 { margin: 18px 0 8px; font-size: clamp(28px, 5vw, 42px); }
+      h2 { margin-top: 30px; font-size: 20px; }
+      p, li { color: #4b4a49; line-height: 1.65; }
+      .lead { font-size: 18px; }
+      .button {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 11px 16px;
+        border-radius: 8px;
+        color: #fff;
+        background: #5b5fc7;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      footer {
+        margin-top: 38px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e5ed;
+        color: #6b6a69;
+        font-size: 13px;
+      }
+      @media (max-width: 560px) {
+        main { margin: 16px auto; padding: 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="mark" aria-hidden="true">T</div>
+      <h1>Transcript Capture for Teams</h1>
+      <p class="lead">
+        A Microsoft Edge extension for capturing an open Microsoft Teams transcript and downloading it as a local plain-text file.
+      </p>
+
+      <h2>Local and user-controlled</h2>
+      <ul>
+        <li>The recorder runs only after you start it from the extension popup.</li>
+        <li>Transcript text is processed in the active Teams tab.</li>
+        <li>No transcript data is sent to the developer or third parties.</li>
+        <li>No analytics, advertising, tracking, or remote code is used.</li>
+      </ul>
+
+      <a class="button" href="privacy-policy.html">Read the privacy policy</a>
+
+      <footer>
+        This independent extension is not affiliated with, endorsed by, or sponsored by Microsoft.
+      </footer>
+    </main>
+  </body>
+</html>
+

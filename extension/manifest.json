@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Transcript Capture for Teams",
+  "short_name": "Teams Transcript",
+  "version": "1.0.0",
+  "description": "Capture and download a complete transcript from an open Microsoft Teams transcript page.",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_title": "Transcript Capture for Teams",
+    "default_popup": "popup.html"
+  }
+}
+
