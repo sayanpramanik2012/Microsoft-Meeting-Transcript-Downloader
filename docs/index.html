@@ -2,86 +2,79 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Transcript Capture for Teams privacy and product information.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="Capture a complete Microsoft Teams transcript and download it locally as plain text.">
+    <meta name="theme-color" content="#5548d9">
     <title>Transcript Capture for Teams</title>
-    <style>
-      :root {
-        color-scheme: light;
-        font-family: "Segoe UI", Arial, sans-serif;
-        color: #242424;
-        background: #f5f5fa;
-      }
-      * { box-sizing: border-box; }
-      body { margin: 0; }
-      main {
-        width: min(760px, calc(100% - 32px));
-        margin: 48px auto;
-        padding: 40px;
-        border: 1px solid #dedee8;
-        border-radius: 16px;
-        background: #fff;
-        box-shadow: 0 12px 40px rgba(36, 36, 70, 0.08);
-      }
-      .mark {
-        display: grid;
-        width: 52px;
-        height: 52px;
-        place-items: center;
-        border-radius: 13px;
-        color: #fff;
-        background: #5b5fc7;
-        font-size: 28px;
-        font-weight: 700;
-      }
-      h1 { margin: 18px 0 8px; font-size: clamp(28px, 5vw, 42px); }
-      h2 { margin-top: 30px; font-size: 20px; }
-      p, li { color: #4b4a49; line-height: 1.65; }
-      .lead { font-size: 18px; }
-      .button {
-        display: inline-block;
-        margin-top: 12px;
-        padding: 11px 16px;
-        border-radius: 8px;
-        color: #fff;
-        background: #5b5fc7;
-        font-weight: 600;
-        text-decoration: none;
-      }
-      footer {
-        margin-top: 38px;
-        padding-top: 20px;
-        border-top: 1px solid #e5e5ed;
-        color: #6b6a69;
-        font-size: 13px;
-      }
-      @media (max-width: 560px) {
-        main { margin: 16px auto; padding: 24px; }
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <header class="site-header">
+      <nav class="nav wrap" aria-label="Primary navigation">
+        <a class="brand" href="index.html">
+          <img src="assets/logo-128.png" alt="">
+          <span>Transcript Capture for Teams</span>
+        </a>
+        <div class="nav-links">
+          <a href="#how-it-works">How it works</a>
+          <a href="privacy-policy.html">Privacy</a>
+          <a href="https://github.com/sayanpramanik2012/Microsoft-Meeting-Transcript-Downloader">GitHub</a>
+        </div>
+      </nav>
+    </header>
+
     <main>
-      <div class="mark" aria-hidden="true">T</div>
-      <h1>Transcript Capture for Teams</h1>
-      <p class="lead">
-        A Microsoft Edge extension for capturing an open Microsoft Teams transcript and downloading it as a local plain-text file.
-      </p>
+      <section class="hero wrap">
+        <div>
+          <p class="eyebrow">Microsoft Edge extension</p>
+          <h1>Save the whole conversation.</h1>
+          <p class="lede">Capture an open Microsoft Teams transcript, check that every row was found, and download a clean text file—without sending the meeting anywhere.</p>
+          <div class="actions">
+            <a class="button primary" href="https://github.com/sayanpramanik2012/Microsoft-Meeting-Transcript-Downloader/tree/main/extension">View extension source</a>
+            <a class="button" href="privacy-policy.html">Read privacy policy</a>
+          </div>
+        </div>
 
-      <h2>Local and user-controlled</h2>
-      <ul>
-        <li>The recorder runs only after you start it from the extension popup.</li>
-        <li>Transcript text is processed in the active Teams tab.</li>
-        <li>No transcript data is sent to the developer or third parties.</li>
-        <li>No analytics, advertising, tracking, or remote code is used.</li>
-      </ul>
+        <div class="product-card" aria-label="Extension capture status preview">
+          <img class="app-icon" src="assets/logo-128.png" alt="Transcript Capture extension icon">
+          <div class="status">
+            <span class="status-dot" aria-hidden="true"></span>
+            <div><strong>Capture complete</strong><span>All transcript rows are ready to download.</span></div>
+          </div>
+        </div>
+      </section>
 
-      <a class="button" href="privacy-policy.html">Read the privacy policy</a>
+      <section class="section" id="how-it-works">
+        <div class="wrap">
+          <div class="section-heading">
+            <p class="eyebrow">Simple by design</p>
+            <h2>From transcript to text in three steps.</h2>
+            <p>The extension handles Teams’ virtualized transcript list and keeps you informed before anything is downloaded.</p>
+          </div>
+          <div class="steps">
+            <article class="step"><span class="step-number">1</span><h3>Open and start</h3><p>Open a completed Teams transcript, select the extension, and start the recorder.</p></article>
+            <article class="step"><span class="step-number">2</span><h3>Capture every row</h3><p>Auto-capture scrolls through the transcript and checks coverage in both directions.</p></article>
+            <article class="step"><span class="step-number">3</span><h3>Download locally</h3><p>Save ordered speaker names, timestamps, and transcript text as a UTF-8 file.</p></article>
+          </div>
+        </div>
+      </section>
 
-      <footer>
-        This independent extension is not affiliated with, endorsed by, or sponsored by Microsoft.
-      </footer>
+      <section class="section">
+        <div class="wrap">
+          <div class="privacy-banner">
+            <div><h2>Your transcript stays yours.</h2><p>No account, server, analytics, advertising, tracking, or remote code. The capture exists temporarily in the tab you selected.</p></div>
+            <a class="button" href="privacy-policy.html">See the details</a>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="footer-row wrap">
+        <p>© 2026 Transcript Capture for Teams</p>
+        <p>Independent and not affiliated with or endorsed by Microsoft.</p>
+      </div>
+    </footer>
   </body>
 </html>
 
