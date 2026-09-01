@@ -1,8 +1,8 @@
 /*
  * Transcript Capture for Teams
  *
- * Runs only after the user clicks the extension toolbar action and starts the
- * recorder. Transcript data remains in this tab and is never sent anywhere.
+ * Runs only after the user starts capture from the extension popup. Transcript
+ * data remains in this tab and is never sent anywhere.
  */
 (() => {
   "use strict";
@@ -19,8 +19,11 @@
   let sequence = 0;
   let capturePending = false;
   let autoRunning = false;
+  let autoFinished = false;
+  let downloaded = false;
+  let error = "";
   let stopped = false;
-  let note = "capturing visible rows";
+  let note = "ready for automatic capture";
 
   const cleanInline = (text) => (text || "").replace(/\s+/g, " ").trim();
   const cleanMessage = (text) => (text || "")
@@ -184,6 +187,8 @@
     return {
       active: !stopped,
       autoRunning,
+      autoFinished,
+      downloaded,
       records: records.size,
       expectedTotal,
       indexed: stats.indexed,
@@ -191,6 +196,7 @@
       missingPreview: stats.missing.slice(0, 15),
       complete: stats.complete,
       note,
+      error,
     };
   }
 
@@ -274,7 +280,18 @@
   async function autoCaptureAll() {
     if (autoRunning || stopped) return;
     autoRunning = true;
+    autoFinished = false;
+    downloaded = false;
+    error = "";
     const scroller = findScrollContainer(surface);
+    if (!scroller) {
+      error = "The transcript scroll area could not be found.";
+      note = error;
+      autoRunning = false;
+      autoFinished = true;
+      stopMonitoring();
+      return;
+    }
     const oldScrollBehavior = scroller.style.scrollBehavior;
     scroller.style.scrollBehavior = "auto";
 
@@ -289,14 +306,23 @@
         await scanDirection(scroller, -1);
       }
 
-      note = coverage().complete
-        ? "ready to download"
-        : "incomplete; keep the pane open and retry";
-    } catch (error) {
-      note = `auto-capture failed: ${error.message}`;
+      if (coverage().complete) {
+        note = "capture complete; starting download";
+        downloaded = downloadTranscript(false);
+        note = downloaded
+          ? "downloaded automatically"
+          : "capture complete; automatic download was blocked";
+      } else {
+        note = "some rows are missing; keep the pane open and retry";
+      }
+    } catch (caught) {
+      error = caught instanceof Error ? caught.message : String(caught);
+      note = `auto-capture failed: ${error}`;
     } finally {
       scroller.style.scrollBehavior = oldScrollBehavior;
       autoRunning = false;
+      autoFinished = true;
+      stopMonitoring();
     }
   }
 
@@ -324,19 +350,10 @@
       .join("\n\n") + "\n";
   }
 
-  function downloadTranscript() {
-    if (autoRunning) return;
+  function downloadTranscript(allowPartial = true) {
     captureNow();
     const stats = coverage();
-    if (expectedTotal && !stats.complete) {
-      const preview = stats.missing.slice(0, 15).join(", ");
-      const proceed = window.confirm(
-        `Capture is incomplete (${stats.indexed}/${expectedTotal}). ` +
-          `Missing row indexes: ${preview}${stats.missing.length > 15 ? ", …" : ""}.\n\n` +
-          "Download the partial transcript anyway?"
-      );
-      if (!proceed) return;
-    }
+    if (!records.size || (!allowPartial && !stats.complete)) return false;
 
     const blob = new Blob(["\ufeff", transcriptText()], {
       type: "text/plain;charset=utf-8",
@@ -349,7 +366,9 @@
     link.click();
     link.remove();
     setTimeout(() => URL.revokeObjectURL(link.href), 1000);
-    note = "download started";
+    downloaded = true;
+    note = stats.complete ? "download started" : "partial transcript download started";
+    return true;
   }
 
   const observerOptions = {
@@ -364,13 +383,17 @@
   document.addEventListener("scroll", scheduleCapture, true);
   const safetyInterval = setInterval(captureNow, 750);
 
+  function stopMonitoring() {
+    mutationObserver.disconnect();
+    document.removeEventListener("scroll", scheduleCapture, true);
+    clearInterval(safetyInterval);
+  }
+
   function stop() {
     if (stopped) return { active: false };
     stopped = true;
     autoRunning = false;
-    mutationObserver.disconnect();
-    document.removeEventListener("scroll", scheduleCapture, true);
-    clearInterval(safetyInterval);
+    stopMonitoring();
     if (globalThis[GLOBAL_KEY]?.stop === stop) delete globalThis[GLOBAL_KEY];
     return { active: false };
   }
@@ -382,7 +405,7 @@
       return publicStatus();
     }
     if (action === "download") {
-      downloadTranscript();
+      downloadTranscript(true);
       return publicStatus();
     }
     if (action === "stop") return stop();

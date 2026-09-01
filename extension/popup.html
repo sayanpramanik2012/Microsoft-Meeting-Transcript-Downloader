@@ -9,41 +9,78 @@
   <body>
     <main>
       <header class="app-header">
-        <div class="brand-lockup">
-          <div class="mark" aria-hidden="true">
-            <span class="mark-page"></span>
-            <span class="mark-lines"></span>
-            <span class="mark-arrow">↓</span>
-          </div>
-          <div>
-            <h1>Transcript Capture</h1>
-            <p class="subtitle">for Microsoft Teams</p>
-          </div>
+        <img class="app-icon" src="icons/icon-48.png" alt="">
+        <div>
+          <h1>Transcript Capture</h1>
+          <p class="subtitle">for Microsoft Teams</p>
         </div>
-        <span class="privacy-pill"><span></span>Local only</span>
       </header>
 
-      <section class="status-card" aria-live="polite">
-        <span id="status-dot" class="status-dot idle"></span>
-        <div>
-          <strong id="status-title">Not started</strong>
-          <p id="status-detail">Open a Teams transcript, then select Start.</p>
+      <p class="intro">Capture and save a completed meeting transcript as a clean text file.</p>
+
+      <section class="actions" aria-label="Transcript actions">
+        <button id="capture" class="button primary" type="button">
+          <svg class="button-icon capture-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 5.5h7.5L18 9v9.5H7v-13Zm6.5 1.8V10h2.7M9.5 13h6M9.5 16h4.5"/>
+          </svg>
+          <span class="spinner" aria-hidden="true"></span>
+          <span id="capture-label">Capture transcript</span>
+        </button>
+
+        <button id="download" class="button secondary" type="button" hidden>
+          <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 4v10m0 0 4-4m-4 4-4-4M5 16v3h14v-3"/>
+          </svg>
+          <span id="download-label">Download again</span>
+        </button>
+      </section>
+
+      <section id="progress-card" class="progress-card" aria-live="polite">
+        <div class="progress-heading">
+          <div
+            id="progress-ring"
+            class="progress-ring"
+            role="progressbar"
+            aria-label="Capture progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+          >
+            <span id="progress-percent">0%</span>
+          </div>
+          <div class="progress-copy">
+            <strong id="status-title">Ready to capture</strong>
+            <p id="status-detail">Open a completed Teams transcript to begin.</p>
+          </div>
+        </div>
+
+        <dl class="capture-stats">
+          <div>
+            <dt>Captured</dt>
+            <dd id="captured-count">—</dd>
+          </div>
+          <div>
+            <dt>Missing</dt>
+            <dd id="missing-count">—</dd>
+          </div>
+        </dl>
+
+        <div class="activity-note">
+          <span id="status-dot" class="status-dot idle" aria-hidden="true"></span>
+          <div>
+            <strong id="activity-title">One-click capture</strong>
+            <p id="activity-detail">The extension will scroll, collect every row, and download automatically.</p>
+          </div>
         </div>
       </section>
 
-      <div class="controls" aria-label="Transcript controls">
-        <button id="start" class="button primary start-action" type="button">Start recorder</button>
-        <button id="auto" class="button accent-action" type="button" disabled>Auto-capture all</button>
-        <button id="download" class="button secondary" type="button" disabled>Download transcript</button>
-        <button id="stop" class="button danger" type="button" disabled>Stop recorder</button>
-      </div>
-
       <footer class="privacy-note">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 19 6v5.1c0 4.4-2.8 8.4-7 10.1-4.2-1.7-7-5.7-7-10.1V6l7-3.2Zm0 3L8 7.6v3.5c0 3 1.6 5.8 4 7.2 2.4-1.4 4-4.2 4-7.2V7.6l-4-1.8Z"/></svg>
-        <p>Keep the transcript pane open during capture. Transcript data stays in this tab.</p>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2.8 19 6v5.1c0 4.4-2.8 8.4-7 10.1-4.2-1.7-7-5.7-7-10.1V6l7-3.2Zm0 3L8 7.6v3.5c0 3 1.6 5.8 4 7.2 2.4-1.4 4-4.2 4-7.2V7.6l-4-1.8Z"/>
+        </svg>
+        <p>Your transcript stays on your device.</p>
       </footer>
     </main>
     <script src="popup.js"></script>
   </body>
 </html>
-

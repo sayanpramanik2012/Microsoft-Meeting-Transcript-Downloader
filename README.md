@@ -4,12 +4,13 @@ A privacy-focused Microsoft Edge extension that captures a completed Microsoft T
 
 ## Features
 
-- Starts only when the user clicks the extension and selects **Start recorder**.
+- Uses one **Capture transcript** action to start the complete workflow.
 - Handles the virtualized transcript list used by Microsoft Teams.
 - Auto-scrolls forward and backward to capture transcript rows.
 - Reports captured, expected, and missing row counts.
 - Preserves speaker names, timestamps, transcript text, and transcription lifecycle events.
-- Downloads the transcript locally as `Teams_Transcript_Complete.txt`.
+- Verifies complete coverage and automatically downloads `Teams_Transcript_Complete.txt`.
+- Offers retry or partial-download recovery only when some rows cannot be captured.
 - Does not use analytics, advertising, external services, or remote code.
 
 ## Install locally for testing
@@ -18,7 +19,7 @@ A privacy-focused Microsoft Edge extension that captures a completed Microsoft T
 2. Enable **Developer mode**.
 3. Select **Load unpacked**.
 4. Choose the `extension` directory from this repository.
-5. Open a completed Microsoft Teams transcript and use the extension toolbar button.
+5. Open a completed Microsoft Teams transcript, select the extension, and choose **Capture transcript**.
 
 ## Permissions
 
